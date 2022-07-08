@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import Song from "./Song";
 import { Row } from "react-bootstrap";
@@ -27,6 +29,7 @@ function Album() {
 
         if (response.ok) {
           let album = await response.json();
+          console.log(album);
           setAlbum(album);
           setSongs(album.tracks.data);
         }

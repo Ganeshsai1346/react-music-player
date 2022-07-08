@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import AlbumCard from "./AlbumCard";
 import { Row, Col } from "react-bootstrap";
@@ -28,6 +30,7 @@ function Artist() {
 
         if (response.ok) {
           let artist = await response.json();
+
           setArtist(artist);
 
           let tracksResponse = await fetch(
@@ -72,8 +75,7 @@ function Artist() {
             </button>
             <button
               className="btn btn-outline-light mainButton"
-              id="followButton"
-            >
+              id="followButton">
               FOLLOW
             </button>
           </div>

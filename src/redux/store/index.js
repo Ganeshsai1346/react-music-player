@@ -1,9 +1,10 @@
 /** @format */
 
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import { persistStore, persistReducer } from "redux-persist";
 import likesReducer from "../reducers/likes";
+import displayReducer from "../reducers/display";
 import localStorage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -16,7 +17,12 @@ const persistConfig = {
   ],
 };
 
-const persistedReducer = persistReducer(persistConfig, likesReducer);
+const bigReducer = combineReducers({
+  likesReducer,
+  displayReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, bigReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,

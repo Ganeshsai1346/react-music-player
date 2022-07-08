@@ -1,11 +1,11 @@
 /** @format */
 
 import { HeartFill, Heart } from "react-bootstrap-icons";
-import { useSelector, useDispatch } from "react-redux";
-import { addLike, removeLike } from "../redux/actions";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { addLike, displaySong, removeLike } from "../redux/actions";
 
 const Song = ({ track }) => {
-  const songs = useSelector((state) => state.songs);
+  const songs = useSelector((state) => state.likesReducer.songs);
 
   const dispatch = useDispatch();
 
@@ -14,8 +14,13 @@ const Song = ({ track }) => {
   const toggleLike = () => {
     isLike ? dispatch(removeLike(track.title)) : dispatch(addLike(track.title));
   };
+
   return (
-    <div className="py-3 trackHover">
+    <div
+      className="py-3 trackHover"
+      onClick={() => {
+        dispatch(displaySong(track));
+      }}>
       {isLike ? (
         <HeartFill color="red" onClick={toggleLike} />
       ) : (
